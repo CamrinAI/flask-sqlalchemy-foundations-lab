@@ -22,6 +22,10 @@ def index():
 
 # Add views here
 
+@app.route('/earthquakes', methods=['GET'])
+def get_earthquakes():
+    earthquakes = Earthquake.query.all()
+    return make_response({"earthquakes": [eq.to_dict() for eq in earthquakes]}, 200)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
